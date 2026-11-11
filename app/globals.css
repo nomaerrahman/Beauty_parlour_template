@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   AURA design tokens — RGB triplets so Tailwind can apply opacity.
+   White-label: swap these values for a client's palette.
+------------------------------------------------------------------- */
+:root {
+  --champagne: 253 251 247; /* #FDFBF7 */
+  --porcelain: 255 255 255;
+  --linen: 243 235 225; /* #F3EBE1 */
+  --bronze: 212 163 115; /* #D4A373 */
+  --bronze-deep: 140 94 52; /* #8C5E34 — accessible accent text */
+  --gold: 230 197 148; /* #E6C594 */
+  --slate: 43 45 66; /* #2B2D42 */
+  --mist: 104 106 126; /* #686A7E */
+  --rose: 240 219 208; /* #F0DBD0 */
+
+  --font-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --font-sans: "Jost", "Futura", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-champagne font-sans text-slate antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-normal;
+  }
+  ::selection {
+    @apply bg-gold/60 text-slate;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--bronze-deep));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/60 bg-white/55 shadow-glass backdrop-blur-xl;
+  }
+  .glass-dark {
+    @apply border border-white/15 bg-slate/35 backdrop-blur-xl;
+  }
+  .hairline {
+    @apply border-slate/10;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
